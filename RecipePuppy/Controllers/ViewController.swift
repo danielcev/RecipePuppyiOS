@@ -13,11 +13,9 @@ class ViewController: UIViewController {
     var dataSource:[Results]?
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var notResultsLbl: UILabel!
     
     @IBAction func searchChanged(_ sender: UITextField) {
-        
-        print("Cambio")
-        
         loadData(text: sender.text!)
     }
     
@@ -35,6 +33,9 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }else{
                 self.dataSource = nil
+                
+                self.tableView.isHidden = true
+                self.notResultsLbl.isHidden = false
             }
             
         }
@@ -52,10 +53,23 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         if dataSource != nil{
+            
+            if (dataSource?.count)! > 0{
+                tableView.isHidden = false
+                notResultsLbl.isHidden = true
+            }else{
+                tableView.isHidden = true
+                notResultsLbl.isHidden = false
+            }
+            
             return dataSource!.count
+        }else{
+            tableView.isHidden = true
+            notResultsLbl.isHidden = false
         }
+        
         return 0
     }
     

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kjJ-Ri-BhY">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kjJ-Ri-BhY">
                                 <rect key="frame" x="0.0" y="127" width="375" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -26,6 +26,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="DXW-eK-7mH"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No hay recetas que mostrar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXO-Zr-LhS">
+                                <rect key="frame" x="81" y="323" width="212" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KkM-4e-EXo">
                                 <rect key="frame" x="16" y="78" width="343" height="30"/>
                                 <constraints>
@@ -43,9 +49,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KkM-4e-EXo" secondAttribute="trailing" constant="16" id="7fS-hz-wl9"/>
+                            <constraint firstItem="HXO-Zr-LhS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GzF-e0-Ail"/>
                             <constraint firstItem="KkM-4e-EXo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="Itv-Yn-gWd"/>
                             <constraint firstItem="kjJ-Ri-BhY" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="JRR-Bh-eNR"/>
                             <constraint firstItem="kjJ-Ri-BhY" firstAttribute="top" secondItem="KkM-4e-EXo" secondAttribute="bottom" constant="19" id="KtZ-lf-MAy"/>
+                            <constraint firstItem="HXO-Zr-LhS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="adS-4b-hE1"/>
                             <constraint firstItem="KkM-4e-EXo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="idM-c3-qpe"/>
                             <constraint firstItem="kjJ-Ri-BhY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nyX-qa-BC0"/>
                             <constraint firstItem="kjJ-Ri-BhY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xM0-Ma-oEX"/>
@@ -54,6 +62,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipe Search" id="x8w-vU-LhE"/>
                     <connections>
+                        <outlet property="notResultsLbl" destination="HXO-Zr-LhS" id="Me9-Sn-Nco"/>
                         <outlet property="tableView" destination="kjJ-Ri-BhY" id="8At-si-8c5"/>
                     </connections>
                 </viewController>
