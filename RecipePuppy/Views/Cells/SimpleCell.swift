@@ -10,7 +10,11 @@ import UIKit
 
 class SimpleCell : UITableViewCell {
     
-    
     @IBOutlet weak var dataText: UILabel!
+    
+    func configureWithData(recipe: Results?){
+        dataText.text = recipe?.title!
+    }
+    
 }
 

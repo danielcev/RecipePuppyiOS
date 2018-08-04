@@ -10,31 +10,19 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-
 extension RecipesResponse{
-
+    
     static func getRecipesRequest(search: String, responseResult: @escaping (_ response: RecipesResponse?, _ error: Bool) -> ()){
         
-        Alamofire.request(Router.recipes(q: search))
-            .responseJSON { response in
-                
-                switch response.result{
-                    
-                case .success:
-                    let jsonResponse = JSON(response.data!)
-                    
-                    let response = RecipesResponse(json: jsonResponse)
-                    
-                    responseResult(response, false)
-                    
-                case .failure:
-                    
-                    responseResult(nil, true)
-                    break
-                }
-                
-                
-                
+        BaseAlamofire.makeRequest(request: Router.recipes(q: search)) { (jsonResult, success) in
+            
+            if success {
+                let response = RecipesResponse(json: jsonResult!)
+                responseResult(response, false)
+            }else{
+                responseResult(nil, true)
+            }
+            
         }
         
     }

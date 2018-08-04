@@ -19,6 +19,7 @@
 		65775BB721131CC300E31336 /* RecipesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65775BB621131CC300E31336 /* RecipesRequest.swift */; };
 		65775BBA21132E5300E31336 /* SimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65775BB921132E5300E31336 /* SimpleCell.xib */; };
 		65775BBC21132EED00E31336 /* SimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65775BBB21132EED00E31336 /* SimpleCell.swift */; };
+		659D0B3F211622A800F6AEEC /* BaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659D0B3E211622A800F6AEEC /* BaseRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		65775BB621131CC300E31336 /* RecipesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRequest.swift; sourceTree = "<group>"; };
 		65775BB921132E5300E31336 /* SimpleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleCell.xib; sourceTree = "<group>"; };
 		65775BBB21132EED00E31336 /* SimpleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCell.swift; sourceTree = "<group>"; };
+		659D0B3E211622A800F6AEEC /* BaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequest.swift; sourceTree = "<group>"; };
 		CD81904F4B813A86A3BC5288 /* Pods_RecipePuppy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecipePuppy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				65775BB02113199F00E31336 /* Router.swift */,
+				659D0B3E211622A800F6AEEC /* BaseRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				659D0B3F211622A800F6AEEC /* BaseRequest.swift in Sources */,
 				65775BAC211318EA00E31336 /* Results.swift in Sources */,
 				65775BBC21132EED00E31336 /* SimpleCell.swift in Sources */,
 				65775BB721131CC300E31336 /* RecipesRequest.swift in Sources */,

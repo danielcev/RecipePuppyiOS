@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var dataSource:[Results]?
+    var dataSource:[Results] = []
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var notResultsLbl: UILabel!
+    
+    var nameCell: String = "SimpleCell"
     
     @IBAction func searchChanged(_ sender: UITextField) {
         loadData(text: sender.text!)
@@ -21,22 +23,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        loadData(text: "")
+        
+        tableView.register(UINib(nibName: nameCell, bundle: nil), forCellReuseIdentifier: nameCell)
 
     }
     
     func loadData(text: String){
         RecipesResponse.getRecipesRequest(search: text) { (recipesResponse, error) in
             
-            if !error{
-                self.dataSource = recipesResponse!.results
-                self.tableView.reloadData()
-            }else{
-                self.dataSource = nil
-                
-                self.tableView.isHidden = true
-                self.notResultsLbl.isHidden = false
-            }
+            let didReceivedData: Bool = !(error || recipesResponse!.results!.count <= 0)
+            
+            self.dataSource = recipesResponse!.results!
+
+            self.setResultsView(resultsExist: didReceivedData)
+            
+            self.tableView.reloadData()
             
         }
     }
@@ -44,6 +47,11 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func setResultsView(resultsExist: Bool){
+        self.tableView.isHidden = !resultsExist
+        self.notResultsLbl.isHidden = resultsExist
     }
 }
     
@@ -53,37 +61,21 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        if dataSource != nil{
-            
-            if (dataSource?.count)! > 0{
-                tableView.isHidden = false
-                notResultsLbl.isHidden = true
-            }else{
-                tableView.isHidden = true
-                notResultsLbl.isHidden = false
-            }
-            
-            return dataSource!.count
-        }else{
-            tableView.isHidden = true
-            notResultsLbl.isHidden = false
-        }
         
-        return 0
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "mycell")
-        
-        if dataSource != nil{
+        if let cell = tableView.dequeueReusableCell(withIdentifier: nameCell, for: indexPath) as? SimpleCell, dataSource.count > 0{
 
-            cell.textLabel?.text = dataSource![indexPath.row].title!
-             
+            cell.configureWithData(recipe: dataSource[indexPath.row])
+            
+            return cell
         }
-
-        return cell
+        
+        return UITableViewCell()
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -95,5 +87,3 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-
